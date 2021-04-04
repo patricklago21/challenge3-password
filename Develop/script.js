@@ -26,8 +26,10 @@ var lowercase = function() {
   }
 
   lowercasePreference = lowercasePreference.toLocaleLowerCase();
-  if (lowercasePreference === "yes" || lowercasePreference === "no") {
-    window.alert("Your preference is noted.");
+  if (lowercasePreference === "yes") {
+    window.alert("Your password will include lowercase letters.");
+  } else if (lowercasePreference === "no") {
+    window.alert("Your password will not include lowercase letters.");
   } else {
     window.alert("Please enter a valid response.");
   }
@@ -44,8 +46,10 @@ var uppercase = function() {
   }
 
   uppercasePreference = uppercasePreference.toLocaleLowerCase();
-  if (uppercasePreference === "yes" || uppercasePreference === "no") {
-    window.alert("Your preference is noted.");
+  if (uppercasePreference === "yes") {
+    window.alert("Your password will include uppercase letters.");
+  } else if (uppercasePreference === "no") {
+    window.alert("Your password will not include uppercase letters.");
   } else {
     window.alert("Please enter a valid response.");
   }
@@ -62,8 +66,10 @@ var numeric = function() {
   }
 
   numericPreference = numericPreference.toLocaleLowerCase();
-  if (numericPreference === "yes" || numericPreference === "no") {
-    window.alert("Your preference is noted.");
+  if (numericPreference === "yes") {
+    window.alert("Your password will include numbers.");
+  } else if (numericPreference === "no") {
+    window.alert("Your password will not include numbers.");
   } else {
     window.alert("Please enter a valid response.");
   }
@@ -80,8 +86,10 @@ var specialCharacters = function() {
   }
 
   specialCharactersPreference = specialCharactersPreference.toLocaleLowerCase();
-  if (specialCharactersPreference === "yes" || specialCharactersPreference === "no") {
-    window.alert("Your preference is noted.");
+  if (specialCharactersPreference === "yes") {
+    window.alert("Your password will include special characters.");
+  } else if (specialCharactersPreference === "no") {
+    window.alert ("Your password will not include special characters");
   } else {
     window.alert("Please enter a valid response.");
   }
@@ -89,21 +97,20 @@ var specialCharacters = function() {
   console.log("The special character preference is " + specialCharactersPreference);
 };
 
-var htmlConnection = document.getElementById("password");
-var generatePassword = function() { 
-  var pass = '';
-  var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+//var htmlConnection = document.getElementById("password");
+//var generatePassword = function() { 
+  //var pass = '';
+  //var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
 
-  for (i = 1; i <= 8; i++) {
-    var char = Math.floor(Math.random() * str.length + 1);
-    pass += str.charAt(char)
-  }
-  return pass;
-}
+  //for (i = 1; i <= 8; i++) {
+    //var char = Math.floor(Math.random() * str.length + 1);
+    //pass += str.charAt(char)
+  //}
+  // return pass;
+// }
 
-function initiate() {
-  htmlConnection.innerHTML = generatePassword();
-}
-
+// function initiate() {
+  //htmlConnection.innerHTML = generatePassword();
+//}
 
 welcome();

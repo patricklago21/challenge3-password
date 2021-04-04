@@ -33,6 +33,24 @@ var lowercase = function() {
   }
 
   console.log("The lowercase preference is " + lowercasePreference);
+  uppercase();
+};
+
+var uppercase = function() {
+  var uppercasePreference = window.prompt("Would you like to include uppercase letters in your password? Please answer YES or NO.");
+  if (uppercasePreference === "" || uppercasePreference === null) {
+    window.alert("You need to provide a valid answer! Please try again.");
+    uppercase();
+  }
+
+  uppercasePreference = uppercasePreference.toLocaleLowerCase();
+  if (uppercasePreference === "yes" || uppercasePreference === "no") {
+    window.alert("Your preference is noted.");
+  } else {
+    window.alert("Please enter a valid response.");
+  }
+
+  console.log("The uppercase preference is " + uppercasePreference);
   numeric();
 };
 
@@ -70,5 +88,22 @@ var specialCharacters = function() {
 
   console.log("The special character preference is " + specialCharactersPreference);
 };
+
+var htmlConnection = document.getElementById("password");
+var generatePassword = function() { 
+  var pass = '';
+  var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+
+  for (i = 1; i <= 8; i++) {
+    var char = Math.floor(Math.random() * str.length + 1);
+    pass += str.charAt(char)
+  }
+  return pass;
+}
+
+function initiate() {
+  htmlConnection.innerHTML = generatePassword();
+}
+
 
 welcome();

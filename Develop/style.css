@@ -118,6 +118,10 @@ button[disabled] {
   overflow: hidden;
 }
 
+.card-footer label {
+  font-size: 90%;
+}
+
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;

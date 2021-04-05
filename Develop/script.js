@@ -1,116 +1,54 @@
-var welcome = function() {
-  window.alert("Welcome to your random password generator!");
-  window.alert("Let's get started with your password preferences.");
+// var characterAmountRange = document.getElementById ('characterAmountRange')
+var characterAmountNumber = document.getElementById ('characterAmountNumber')
+var includeUppercaseElement = document.getElementById('includeUppercase')
+var includeNumbersElement = document.getElementById('includeNumbers')
+var includeSymbolsElement = document.getElementById('includeSymbols')
+var form = document.getElementById('passwordGeneratorForm')
+var passwordDisplay = document.getElementById('passwordDisplay')
 
-  length();
-};
 
-var length = function() {
-  var characterLength = window.prompt("How many characters would you like your password to be? Please enter a number between 8 and 128.");
-  if (characterLength >= 8 && characterLength <= 128) {
-    window.alert("Your password will be " + characterLength + " characters long.");
-    console.log("Character length " + characterLength);
-  } else {
-    window.alert("Please try again.");
-    length();
-  }
+var LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
+var UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
+var NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
+var SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(arrayFromLowToHigh(58, 64)).concat(arrayFromLowToHigh(91, 96)).concat(arrayFromLowToHigh(123, 126))
 
-  lowercase();
-};
 
-var lowercase = function() {
-  var lowercasePreference = window.prompt("Would you like to include lowercase letters in your password? Please answer YES or NO.");
-  if (lowercasePreference === "" || lowercasePreference === null) {
-    window.alert("You need to provide a valid answer! Please try again.");
-    lowercase();
-  }
+// characterAmountNumber.addEventListener('input', syncCharacterAmount)
+// characterAmountRange.addEventListener('input', syncCharacterAmount)
 
-  lowercasePreference = lowercasePreference.toLocaleLowerCase();
-  if (lowercasePreference === "yes") {
-    window.alert("Your password will include lowercase letters.");
-  } else if (lowercasePreference === "no") {
-    window.alert("Your password will not include lowercase letters.");
-  } else {
-    window.alert("Please enter a valid response.");
-  }
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    var characterAmount = characterAmountNumber.value
+    var includeUppercase = includeUppercaseElement.checked
+    var includeNumbers = includeNumbersElement.checked
+    var includeSymbols = includeSymbolsElement.checked
+    var password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
+    passwordDisplay.innerText = password
+})
 
-  console.log("The lowercase preference is " + lowercasePreference);
-  uppercase();
-};
+function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
+    let charCodes = LOWERCASE_CHAR_CODES
+    if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
+    if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
+    if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
+    var passwordCharacters = []
+    for (let i = 0; i < characterAmount; i++) {
+        var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
+        passwordCharacters.push(String.fromCharCode(characterCode))
+    }
+    return passwordCharacters.join('')
+}
 
-var uppercase = function() {
-  var uppercasePreference = window.prompt("Would you like to include uppercase letters in your password? Please answer YES or NO.");
-  if (uppercasePreference === "" || uppercasePreference === null) {
-    window.alert("You need to provide a valid answer! Please try again.");
-    uppercase();
-  }
+function arrayFromLowToHigh(low, high) {
+    var array = []
+    for (let i = low; i <= high; i++) {
+        array.push(i)
+    }
+    return array
+}
 
-  uppercasePreference = uppercasePreference.toLocaleLowerCase();
-  if (uppercasePreference === "yes") {
-    window.alert("Your password will include uppercase letters.");
-  } else if (uppercasePreference === "no") {
-    window.alert("Your password will not include uppercase letters.");
-  } else {
-    window.alert("Please enter a valid response.");
-  }
-
-  console.log("The uppercase preference is " + uppercasePreference);
-  numeric();
-};
-
-var numeric = function() {
-  var numericPreference = window.prompt("Would you like to include numbers in your password? Please answer YES or NO.");
-  if (numericPreference === "" || numericPreference === null) {
-    window.alert("You need to provide a valid answer! Please try again.");
-    numeric();
-  }
-
-  numericPreference = numericPreference.toLocaleLowerCase();
-  if (numericPreference === "yes") {
-    window.alert("Your password will include numbers.");
-  } else if (numericPreference === "no") {
-    window.alert("Your password will not include numbers.");
-  } else {
-    window.alert("Please enter a valid response.");
-  }
-
-  console.log("The numberic preference is " + numericPreference);
-  specialCharacters();
-};
-
-var specialCharacters = function() {
-  var specialCharactersPreference = window.prompt("Would you like to include special characters in your password? Please answer YES or NO.");
-  if (specialCharactersPreference === "" || specialCharactersPreference === null) {
-    window.alert("You need to provide a valid answer! Please try again.");
-    specialCharacters();
-  }
-
-  specialCharactersPreference = specialCharactersPreference.toLocaleLowerCase();
-  if (specialCharactersPreference === "yes") {
-    window.alert("Your password will include special characters.");
-  } else if (specialCharactersPreference === "no") {
-    window.alert ("Your password will not include special characters");
-  } else {
-    window.alert("Please enter a valid response.");
-  }
-
-  console.log("The special character preference is " + specialCharactersPreference);
-};
-
-//var htmlConnection = document.getElementById("password");
-//var generatePassword = function() { 
-  //var pass = '';
-  //var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
-
-  //for (i = 1; i <= 8; i++) {
-    //var char = Math.floor(Math.random() * str.length + 1);
-    //pass += str.charAt(char)
-  //}
-  // return pass;
+// function syncCharacterAmount(e) {
+//     var value = e.target.value
+//     characterAmountNumber.value = value
+//     characterAmountRange.value = value
 // }
-
-// function initiate() {
-  //htmlConnection.innerHTML = generatePassword();
-//}
-
-welcome();

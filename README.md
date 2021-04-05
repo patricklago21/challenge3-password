@@ -1,20 +1,6 @@
-# Password Generator Starter Code
+# Password Generator
 
-code originally on JS file
-// Assignment code here
+## Link to deployed application: 
 
+## By selecting your preferences of including uppercase letters, numbers, and symbols, this application will generate a randome password with the specified number of characters.
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
